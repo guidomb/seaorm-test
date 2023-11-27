@@ -2,5 +2,5 @@
 
 pub mod prelude;
 
-pub mod authors;
-pub mod posts;
+pub mod author;
+pub mod post;

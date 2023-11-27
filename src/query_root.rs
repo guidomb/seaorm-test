@@ -12,7 +12,7 @@ pub fn schema(
     complexity: Option<usize>,
 ) -> Result<Schema, SchemaError> {
     let mut builder = Builder::new(&CONTEXT);
-    seaography::register_entities!(builder, [authors, posts,]);
+    seaography::register_entities!(builder, [author, post,]);
     let schema = builder.schema_builder();
     let schema = if let Some(depth) = depth {
         schema.limit_depth(depth)

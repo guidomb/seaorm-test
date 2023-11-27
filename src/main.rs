@@ -51,8 +51,8 @@ async fn graphql_playground() -> Result<HttpResponse> {
 async fn posts(author_id: web::Path<Uuid>, db: web::Data<DatabaseConnection>) -> HttpResult {
     let author_id = author_id.into_inner();
     let db = db.into_inner();
-    let posts = Posts::find()
-        .filter(entities::posts::Column::AuthorId.eq(author_id))
+    let posts = Post::find()
+        .filter(entities::post::Column::AuthorId.eq(author_id))
         .all(db.as_ref())
         .await
         .map_err(ErrorInternalServerError)?;
