@@ -1,5 +1,6 @@
-use crate::{entities::*, OrmDataloader};
+use crate::OrmDataloader;
 use async_graphql::{dataloader::DataLoader, dynamic::*};
+use entities::{author, post};
 use sea_orm::DatabaseConnection;
 use seaography::{Builder, BuilderContext};
 

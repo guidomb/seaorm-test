@@ -9,7 +9,7 @@ use async_graphql::{
 };
 use async_graphql_actix_web::{GraphQLRequest, GraphQLResponse};
 use dotenv::dotenv;
-use entities::prelude::*;
+use entities::*;
 use lazy_static::lazy_static;
 use sea_orm::{ColumnTrait, Database, DatabaseConnection, EntityTrait, QueryFilter};
 use seaorm_test::*;
