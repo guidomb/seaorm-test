@@ -47,6 +47,16 @@ async fn graphql_playground() -> Result<HttpResponse> {
         )))))
 }
 
+#[get("/authors")]
+async fn authors(db: web::Data<DatabaseConnection>) -> HttpResult {
+    let authors = Author::find()
+        .all(db.as_ref())
+        .await
+        .map_err(ErrorInternalServerError)?;
+
+    Ok(HttpResponse::Ok().json(authors))
+}
+
 #[get("/authors/{author_id}/posts")]
 async fn posts(author_id: web::Path<Uuid>, db: web::Data<DatabaseConnection>) -> HttpResult {
     let author_id = author_id.into_inner();
@@ -91,6 +101,7 @@ async fn main() -> std::io::Result<()> {
             .app_data(Data::new(schema.clone()))
             .app_data(Data::new(database.clone()))
             .service(posts)
+            .service(authors)
             .service(web::resource("/graphql").guard(guard::Post()).to(index))
             .service(
                 web::resource("/playground")
