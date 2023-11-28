@@ -12,8 +12,8 @@ actix-web = { version = "4.3.1", default-features = false, features = [
 actix-http = { version = "3.4.0", default-features = true, features = [
     "http2",
 ] }
-async-graphql-actix-web = { version = "5.0.10" }
-async-graphql = { version = "5.0.10", features = [
+async-graphql-actix-web = { version = "6.0.11" }
+async-graphql = { version = "6.0.11", features = [
     "decimal",
     "chrono",
     "dataloader",
@@ -40,5 +40,5 @@ anyhow = "1.0.75"
 chrono = "0.4.31"
 
 [dependencies.seaography]
-version = "1.0.0-rc.2"
+git = "https://github.com/SeaQL/seaography.git"
 features = ["with-decimal", "with-chrono", "with-uuid"]
