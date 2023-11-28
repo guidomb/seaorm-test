@@ -24,17 +24,23 @@ impl MigrationTrait for Migration {
                     )
                     .col(
                         ColumnDef::new(author::Column::Email)
-                            .char()
-                            .char_len(254)
+                            .string_len(254)
                             .unique_key()
                             .not_null(),
                     )
-                    .col(ColumnDef::new(author::Column::FirstName).text().not_null())
-                    .col(ColumnDef::new(author::Column::LastName).text().not_null())
+                    .col(
+                        ColumnDef::new(author::Column::FirstName)
+                            .string_len(100)
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(author::Column::LastName)
+                            .string_len(100)
+                            .not_null(),
+                    )
                     .col(
                         ColumnDef::new(author::Column::Username)
-                            .char()
-                            .char_len(50)
+                            .string_len(50)
                             .unique_key()
                             .not_null(),
                     )
@@ -61,16 +67,15 @@ impl MigrationTrait for Migration {
                     )
                     .col(
                         ColumnDef::new(post::Column::Title)
-                            .char()
-                            .char_len(100)
+                            .string_len(100)
                             .not_null(),
                     )
                     .col(
                         ColumnDef::new(post::Column::Description)
-                            .string()
+                            .string_len(500)
                             .not_null(),
                     )
-                    .col(ColumnDef::new(post::Column::Content).string().not_null())
+                    .col(ColumnDef::new(post::Column::Content).text().not_null())
                     .col(
                         ColumnDef::new(post::Column::CreatedAt)
                             .timestamp_with_time_zone()
