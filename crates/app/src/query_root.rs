@@ -1,6 +1,6 @@
 use crate::OrmDataloader;
 use async_graphql::{dataloader::DataLoader, dynamic::*};
-use entities::{author, post};
+use entities::{author, post, AuthorRole};
 use sea_orm::DatabaseConnection;
 use seaography::{Builder, BuilderContext};
 
@@ -14,6 +14,7 @@ pub fn schema(
 ) -> Result<Schema, SchemaError> {
     let mut builder = Builder::new(&CONTEXT);
     seaography::register_entities!(builder, [author, post,]);
+    builder.register_enumeration::<AuthorRole>();
     let schema = builder.schema_builder();
     let schema = if let Some(depth) = depth {
         schema.limit_depth(depth)

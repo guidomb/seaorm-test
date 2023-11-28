@@ -3,6 +3,8 @@
 use sea_orm::entity::prelude::*;
 use serde::Serialize;
 
+use crate::AuthorRole;
+
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq, Serialize)]
 #[sea_orm(table_name = "author")]
 pub struct Model {
@@ -17,6 +19,7 @@ pub struct Model {
     pub created_at: DateTimeWithTimeZone,
     #[sea_orm(unique)]
     pub username: String,
+    pub role: AuthorRole,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
